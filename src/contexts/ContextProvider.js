@@ -11,12 +11,20 @@ const initialState = {
 
 export const ContextProvider = ({ children }) => {
     const [activeMenu, setActiveMenu] = useState(true);
+    const [isClicked, setIsClicked] = useState(initialState)
+
+    const handleClick = (clicked) => {
+        setIsClicked({ ...initialState, [clicked]: true });
+    } //spread value of initialState because (isClicked) is already an object and we cant override an object
     
     return(
         <StateContext.Provider
             value={{
                 activeMenu,
                 setActiveMenu,
+                isClicked,
+                setIsClicked,
+                handleClick,
             }}
         >
             {children}
